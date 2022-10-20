@@ -30,10 +30,6 @@ export function ProductEdit() {
     imageUrl: "",
   };
 
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const productEdit = async () => {
     await api
       .put("/updateproduct", {
@@ -66,9 +62,6 @@ export function ProductEdit() {
     setImageUrl(localStorage.getItem("imageUrl"));
   }, []);
 
-  console.log("upc: " + localStorage.getItem("upc"));
-  console.log("productName: " + localStorage.getItem("productName"));
-
   return (
     <div class="container">
       <Form style={{ padding: "50px 100px" }} onSubmit={productEdit}>
@@ -79,12 +72,10 @@ export function ProductEdit() {
             onChange={(e) => {
               setUpc(e.target.value);
             }}
-            
             placeholder="UPC"
             value={upc}
             disabled
           />
-          <p className="error-message">{formErrors.upc}</p>
         </Form.Field>
         <Form.Field>
           <label>Product Name</label>
@@ -93,11 +84,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setProductName(e.target.value);
             }}
-            
             placeholder="Product Name"
             value={productName}
           />
-          <p className="error-message">{formErrors.productName}</p>
         </Form.Field>
         <Form.Field>
           <label>Brand</label>
@@ -106,11 +95,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setBrand(e.target.value);
             }}
-            
             placeholder="Brand"
             value={brand}
           />
-          <p className="error-message">{formErrors.brand}</p>
         </Form.Field>
         <Form.Field>
           <label>Category</label>
@@ -119,11 +106,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setCategory(e.target.value);
             }}
-            
             placeholder="Category"
             value={category}
           />
-          <p className="error-message">{formErrors.category}</p>
         </Form.Field>
         <Form.Field>
           <label>Product Description</label>
@@ -132,11 +117,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setProductDescription(e.target.value);
             }}
-            
             placeholder="Product Description"
             value={productDescription}
           />
-          <p className="error-message">{formErrors.productDescription}</p>
         </Form.Field>
         <Form.Field>
           <label>Price Per Unit</label>
@@ -145,11 +128,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setPricePerUnit(e.target.value);
             }}
-            
             placeholder="Price Per Unit"
             value={pricePerUnit}
           />
-          <p className="error-message">{formErrors.pricePerUnit}</p>
         </Form.Field>
         <Form.Field>
           <label>Available Stock</label>
@@ -158,11 +139,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setAvailableStock(e.target.value);
             }}
-            
             placeholder="Available Stock"
             value={availableStock}
           />
-          <p className="error-message">{formErrors.availableStock}</p>
         </Form.Field>
         <Form.Field>
           <label>Reserved Stock</label>
@@ -171,11 +150,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setReservedStock(e.target.value);
             }}
-            
             placeholder="Reserved Stock"
             value={reservedStock}
           />
-          <p className="error-message">{formErrors.reservedStock}</p>
         </Form.Field>
         <Form.Field>
           <label>Shipped Stock</label>
@@ -184,11 +161,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setShippedStock(e.target.value);
             }}
-            
             placeholder="Shipped Stock"
             value={shippedStock}
           />
-          <p className="error-message">{formErrors.shippedStock}</p>
         </Form.Field>
         <Form.Field>
           <label>Image URL</label>
@@ -197,11 +172,9 @@ export function ProductEdit() {
             onChange={(e) => {
               setImageUrl(e.target.value);
             }}
-            
             placeholder="Image URL"
             value={imageUrl}
           />
-          <p className="error-message">{formErrors.imageUrl}</p>
         </Form.Field>
         <Button
           style={{ backgroundColor: "#0d6c07", color: "#ffffff" }}

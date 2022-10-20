@@ -1,7 +1,10 @@
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
-import { ProductEdit } from "./ProductEdit";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import api from "../api/InventoryAPI";
+import { ProductDelete } from "./ProductDelete";
 
 export function ProductList({ products }) {
   const setProductData = (
@@ -115,7 +118,14 @@ export function ProductList({ products }) {
             />
           </Link>
 
-          <Button icon="trash" />
+          <Button
+            icon="trash"
+            onClick={() => {
+              {
+                ProductDelete(row.upc);
+              }
+            }}
+          />
         </Button.Group>
       ),
     },
