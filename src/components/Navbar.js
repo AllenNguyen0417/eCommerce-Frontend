@@ -1,6 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
 import "./Navbar.css";
-import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 export function Navbar() {
