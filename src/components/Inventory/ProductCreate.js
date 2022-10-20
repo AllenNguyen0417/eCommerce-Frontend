@@ -112,7 +112,6 @@ export function ProductCreate() {
               setUpc(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="UPC"
             values={formValues.upc}
           />
@@ -126,7 +125,6 @@ export function ProductCreate() {
               setProductName(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Product Name"
             values={formValues.productName}
           />
@@ -140,7 +138,6 @@ export function ProductCreate() {
               setBrand(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Brand"
             values={formValues.brand}
           />
@@ -154,7 +151,6 @@ export function ProductCreate() {
               setCategory(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Category"
             values={formValues.category}
           />
@@ -168,7 +164,6 @@ export function ProductCreate() {
               setProductDescription(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Product Description"
             values={formValues.productDescription}
           />
@@ -182,7 +177,6 @@ export function ProductCreate() {
               setPricePerUnit(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Price Per Unit"
             values={formValues.pricePerUnit}
           />
@@ -196,7 +190,6 @@ export function ProductCreate() {
               setAvailableStock(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Available Stock"
             values={formValues.availableStock}
           />
@@ -210,7 +203,6 @@ export function ProductCreate() {
               setReservedStock(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Reserved Stock"
             values={formValues.reservedStock}
           />
@@ -224,7 +216,6 @@ export function ProductCreate() {
               setShippedStock(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Shipped Stock"
             values={formValues.shippedStock}
           />
@@ -238,14 +229,13 @@ export function ProductCreate() {
               setImageUrl(e.target.value);
               handleChange(e);
             }}
-            style={{ height: "20px" }}
             placeholder="Image URL"
             values={formValues.imageUrl}
           />
           <p className="error-message">{formErrors.imageUrl}</p>
         </Form.Field>
         <Button
-          style={{ backgroundColor: "#ee6e73", color: "#ffffff" }}
+          style={{ backgroundColor: "#0d6c07", color: "#ffffff" }}
           type="submit"
         >
           Create

@@ -79,7 +79,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setUpc(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="UPC"
             value={upc}
             disabled
@@ -93,7 +93,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setProductName(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Product Name"
             value={productName}
           />
@@ -106,7 +106,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setBrand(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Brand"
             value={brand}
           />
@@ -119,7 +119,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setCategory(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Category"
             value={category}
           />
@@ -132,7 +132,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setProductDescription(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Product Description"
             value={productDescription}
           />
@@ -145,7 +145,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setPricePerUnit(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Price Per Unit"
             value={pricePerUnit}
           />
@@ -158,7 +158,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setAvailableStock(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Available Stock"
             value={availableStock}
           />
@@ -171,7 +171,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setReservedStock(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Reserved Stock"
             value={reservedStock}
           />
@@ -184,7 +184,7 @@ export function ProductEdit() {
             onChange={(e) => {
               setShippedStock(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Shipped Stock"
             value={shippedStock}
           />
@@ -197,14 +197,14 @@ export function ProductEdit() {
             onChange={(e) => {
               setImageUrl(e.target.value);
             }}
-            style={{ height: "20px" }}
+            
             placeholder="Image URL"
             value={imageUrl}
           />
           <p className="error-message">{formErrors.imageUrl}</p>
         </Form.Field>
         <Button
-          style={{ backgroundColor: "#ee6e73", color: "#ffffff" }}
+          style={{ backgroundColor: "#0d6c07", color: "#ffffff" }}
           type="submit"
         >
           Update

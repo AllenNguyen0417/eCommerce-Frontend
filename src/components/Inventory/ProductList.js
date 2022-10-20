@@ -133,7 +133,7 @@ export function ProductList({ products }) {
       />
       <div style={{ textAlign: "center" }}>
         <Button
-          style={{ backgroundColor: "#ee6e73", margin: "20px 0px 0px 10px" }}
+          style={{ backgroundColor: "#0d6c07", margin: "20px 0px 0px 10px" }}
         >
           <Link to="/product/create" style={{ color: "white" }}>
             Create Product

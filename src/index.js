@@ -7,7 +7,6 @@ import { Products } from "./components/Inventory/Products";
 import { ProductCreate } from "./components/Inventory/ProductCreate";
 import { ProductEdit } from "./components/Inventory/ProductEdit";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "materialize-css/dist/css/materialize.min.css";
 import { Navbar } from "./components/Navbar";
 import "semantic-ui-css/semantic.min.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
