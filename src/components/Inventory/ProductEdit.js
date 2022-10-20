@@ -1,10 +1,10 @@
 import { Button, Form } from "semantic-ui-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../api/InventoryAPI";
 import "./Products.css";
 import { useNavigate } from "react-router-dom";
 
-export function ProductCreate() {
+export function ProductEdit() {
   const navigate = useNavigate();
   const [upc, setUpc] = useState("");
   const [productName, setProductName] = useState("");
@@ -34,57 +34,9 @@ export function ProductCreate() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    setFormErrors(validate(formValues));
-
-    if (Object.keys(formErrors).length === 0) {
-      productCreate();
-    }
-  };
-
-  const validate = (values) => {
-    const errors = {};
-    if (!values.upc) {
-      errors.upc = "UPC is required";
-    }
-    if (!values.productName) {
-      errors.productName = "Product Name is required";
-    }
-    if (!values.brand) {
-      errors.brand = "Brand is required";
-    }
-    if (!values.category) {
-      errors.category = "Category is required";
-    }
-    if (!values.productDescription) {
-      errors.productDescription = "Product Description is required";
-    }
-    if (!values.pricePerUnit) {
-      errors.pricePerUnit = "Price Per Unit is required";
-    }
-    if (!values.availableStock) {
-      errors.availableStock = "Available Stock is required";
-    }
-    if (!values.reservedStock) {
-      errors.reservedStock = "Reserved Stock is required";
-    }
-    if (!values.shippedStock) {
-      errors.shippedStock = "Shipped Stock is required";
-    }
-    if (!values.imageUrl) {
-      errors.imageUrl = "Image URL is required";
-    }
-    return errors;
-  };
-
-  const productCreate = async () => {
+  const productEdit = async () => {
     await api
-      .post("/createproduct", {
+      .put("/updateproduct", {
         upc,
         productName,
         brand,
@@ -101,20 +53,36 @@ export function ProductCreate() {
       });
   };
 
+  useEffect(() => {
+    setUpc(localStorage.getItem("upc"));
+    setProductName(localStorage.getItem("productName"));
+    setBrand(localStorage.getItem("brand"));
+    setCategory(localStorage.getItem("category"));
+    setProductDescription(localStorage.getItem("productDescription"));
+    setPricePerUnit(localStorage.getItem("pricePerUnit"));
+    setAvailableStock(localStorage.getItem("availableStock"));
+    setReservedStock(localStorage.getItem("reservedStock"));
+    setShippedStock(localStorage.getItem("shippedStock"));
+    setImageUrl(localStorage.getItem("imageUrl"));
+  }, []);
+
+  console.log("upc: " + localStorage.getItem("upc"));
+  console.log("productName: " + localStorage.getItem("productName"));
+
   return (
     <div class="container">
-      <Form style={{ padding: "50px 100px" }} onSubmit={handleSubmit}>
+      <Form style={{ padding: "50px 100px" }} onSubmit={productEdit}>
         <Form.Field>
           <label>UPC</label>
           <input
             name="upc"
             onChange={(e) => {
               setUpc(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="UPC"
-            values={formValues.upc}
+            value={upc}
+            disabled
           />
           <p className="error-message">{formErrors.upc}</p>
         </Form.Field>
@@ -124,11 +92,10 @@ export function ProductCreate() {
             name="productName"
             onChange={(e) => {
               setProductName(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Product Name"
-            values={formValues.productName}
+            value={productName}
           />
           <p className="error-message">{formErrors.productName}</p>
         </Form.Field>
@@ -138,11 +105,10 @@ export function ProductCreate() {
             name="brand"
             onChange={(e) => {
               setBrand(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Brand"
-            values={formValues.brand}
+            value={brand}
           />
           <p className="error-message">{formErrors.brand}</p>
         </Form.Field>
@@ -152,11 +118,10 @@ export function ProductCreate() {
             name="category"
             onChange={(e) => {
               setCategory(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Category"
-            values={formValues.category}
+            value={category}
           />
           <p className="error-message">{formErrors.category}</p>
         </Form.Field>
@@ -166,11 +131,10 @@ export function ProductCreate() {
             name="productDescription"
             onChange={(e) => {
               setProductDescription(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Product Description"
-            values={formValues.productDescription}
+            value={productDescription}
           />
           <p className="error-message">{formErrors.productDescription}</p>
         </Form.Field>
@@ -180,11 +144,10 @@ export function ProductCreate() {
             name="pricePerUnit"
             onChange={(e) => {
               setPricePerUnit(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Price Per Unit"
-            values={formValues.pricePerUnit}
+            value={pricePerUnit}
           />
           <p className="error-message">{formErrors.pricePerUnit}</p>
         </Form.Field>
@@ -194,11 +157,10 @@ export function ProductCreate() {
             name="availableStock"
             onChange={(e) => {
               setAvailableStock(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Available Stock"
-            values={formValues.availableStock}
+            value={availableStock}
           />
           <p className="error-message">{formErrors.availableStock}</p>
         </Form.Field>
@@ -208,11 +170,10 @@ export function ProductCreate() {
             name="reservedStock"
             onChange={(e) => {
               setReservedStock(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Reserved Stock"
-            values={formValues.reservedStock}
+            value={reservedStock}
           />
           <p className="error-message">{formErrors.reservedStock}</p>
         </Form.Field>
@@ -222,11 +183,10 @@ export function ProductCreate() {
             name="shippedStock"
             onChange={(e) => {
               setShippedStock(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Shipped Stock"
-            values={formValues.shippedStock}
+            value={shippedStock}
           />
           <p className="error-message">{formErrors.shippedStock}</p>
         </Form.Field>
@@ -236,11 +196,10 @@ export function ProductCreate() {
             name="imageUrl"
             onChange={(e) => {
               setImageUrl(e.target.value);
-              handleChange(e);
             }}
             style={{ height: "20px" }}
             placeholder="Image URL"
-            values={formValues.imageUrl}
+            value={imageUrl}
           />
           <p className="error-message">{formErrors.imageUrl}</p>
         </Form.Field>
@@ -248,7 +207,7 @@ export function ProductCreate() {
           style={{ backgroundColor: "#ee6e73", color: "#ffffff" }}
           type="submit"
         >
-          Create
+          Update
         </Button>
       </Form>
     </div>

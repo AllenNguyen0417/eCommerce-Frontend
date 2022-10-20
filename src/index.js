@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Products } from "./components/Inventory/Products";
 import { ProductCreate } from "./components/Inventory/ProductCreate";
+import { ProductEdit } from "./components/Inventory/ProductEdit";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "materialize-css/dist/css/materialize.min.css";
 import { Navbar } from "./components/Navbar";
@@ -18,9 +19,10 @@ root.render(
       <Route path="/" element={<App></App>}></Route>
       <Route path="/products" element={<Products></Products>}></Route>
       <Route
-        path="/products/create"
+        path="/product/create"
         element={<ProductCreate></ProductCreate>}
       ></Route>
+      <Route path="/product/edit" element={<ProductEdit></ProductEdit>}></Route>
     </Routes>
   </BrowserRouter>
 );

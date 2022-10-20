@@ -1,8 +1,33 @@
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
+import { ProductEdit } from "./ProductEdit";
 
 export function ProductList({ products }) {
+  const setProductData = (
+    upc,
+    productName,
+    brand,
+    category,
+    productDescription,
+    pricePerUnit,
+    availableStock,
+    reservedStock,
+    shippedStock,
+    imageUrl
+  ) => {
+    localStorage.setItem("upc", upc);
+    localStorage.setItem("productName", productName);
+    localStorage.setItem("brand", brand);
+    localStorage.setItem("category", category);
+    localStorage.setItem("productDescription", productDescription);
+    localStorage.setItem("pricePerUnit", pricePerUnit);
+    localStorage.setItem("availableStock", availableStock);
+    localStorage.setItem("reservedStock", reservedStock);
+    localStorage.setItem("shippedStock", shippedStock);
+    localStorage.setItem("imageUrl", imageUrl);
+  };
+
   const columns = [
     {
       name: "UPC",
@@ -66,12 +91,34 @@ export function ProductList({ products }) {
         />
       ),
     },
-    // {
-    //   name: "Action",
-    //   selector: (row) => (
-    //     <></>
-    //   ),
-    // },
+    {
+      name: "Action",
+      selector: (row) => (
+        <Button.Group basic size="medium">
+          <Link to="/product/edit">
+            <Button
+              icon="edit"
+              onClick={() => {
+                setProductData(
+                  row.upc,
+                  row.productName,
+                  row.brand,
+                  row.category,
+                  row.productDescription,
+                  row.pricePerUnit,
+                  row.availableStock,
+                  row.reservedStock,
+                  row.shippedStock,
+                  row.imageUrl
+                );
+              }}
+            />
+          </Link>
+
+          <Button icon="trash" />
+        </Button.Group>
+      ),
+    },
   ];
 
   return (
@@ -88,7 +135,7 @@ export function ProductList({ products }) {
         <Button
           style={{ backgroundColor: "#ee6e73", margin: "20px 0px 0px 10px" }}
         >
-          <Link to="/products/create" style={{ color: "white" }}>
+          <Link to="/product/create" style={{ color: "white" }}>
             Create Product
           </Link>
         </Button>
