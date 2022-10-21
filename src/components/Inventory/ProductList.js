@@ -1,10 +1,9 @@
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
-import { confirmAlert } from "react-confirm-alert";
+import { Button, Input } from "semantic-ui-react";
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import api from "../api/InventoryAPI";
 import { ProductDelete } from "./ProductDelete";
+import { useState, useEffect } from "react";
 
 export function ProductList({ products }) {
   const setProductData = (
@@ -40,7 +39,6 @@ export function ProductList({ products }) {
     {
       name: "Product Name",
       selector: (row) => row.productName,
-
       sortable: true,
     },
     {
@@ -131,15 +129,45 @@ export function ProductList({ products }) {
     },
   ];
 
+  // Search filter
+  const [query, setQuery] = useState("");
+
+  const search = (data) => {
+    return data.filter(
+      (item) =>
+        item.upc.toLowerCase().includes(query) ||
+        item.productName.toLowerCase().includes(query) ||
+        item.brand.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query) ||
+        item.productDescription.toLowerCase().includes(query) ||
+        item.pricePerUnit.toLowerCase().includes(query) ||
+        item.availableStock.toLowerCase().includes(query) ||
+        item.reservedStock.toLowerCase().includes(query) ||
+        item.shippedStock.toLowerCase().includes(query)
+    );
+  };
+
+  const searchBar = () => {
+    return (
+      <Input
+        icon="search"
+        placeholder="Search..."
+        onChange={(e) => setQuery(e.target.value.toLowerCase())}
+      ></Input>
+    );
+  };
+
   return (
     <div>
       <DataTable
         title="Inventory"
         columns={columns}
-        data={products}
-        defaultSortFieldId={1}
+        data={search(products)}
         pagination
-        paginationRowsPerPageOptions={[5, 10, 15, 20]}
+        fixedHeader
+        fixedHeaderScrollHeight="700px"
+        subHeader
+        subHeaderComponent={searchBar()}
       />
       <div style={{ textAlign: "center" }}>
         <Button
