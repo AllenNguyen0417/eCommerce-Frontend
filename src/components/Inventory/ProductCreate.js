@@ -1,5 +1,5 @@
 import { Button, Form } from "semantic-ui-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../api/InventoryAPI";
 import "./Products.css";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,19 @@ export function ProductCreate() {
   const [reservedStock, setReservedStock] = useState("");
   const [shippedStock, setShippedStock] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+
+  const [upcList, setUpcList] = useState([]);
+
+  const getUpcs = () => {
+    // Sending HTTP GET request
+    api.get("/products").then((response) => {
+      const upcs = response.data.map((res) => res.upc);
+      setUpcList(upcs);
+    });
+  };
+  useEffect(() => {
+    getUpcs();
+  }, []);
 
   const initialValues = {
     upc: "",
@@ -43,7 +56,11 @@ export function ProductCreate() {
     setFormErrors(validate(formValues));
 
     if (Object.keys(formErrors).length === 0) {
-      productCreate();
+      if (upcList.includes(upc) && upc.length !== 0) {
+        alert("upc = " + upc + " has already exist");
+      } else {
+        productCreate();
+      }
     }
   };
 
@@ -102,7 +119,7 @@ export function ProductCreate() {
   };
 
   return (
-    <div class="container">
+    <div className="container">
       <Form style={{ padding: "50px 100px" }} onSubmit={handleSubmit}>
         <Form.Field>
           <label>UPC</label>

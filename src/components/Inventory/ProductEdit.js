@@ -63,7 +63,7 @@ export function ProductEdit() {
   }, []);
 
   return (
-    <div class="container">
+    <div className="container">
       <Form style={{ padding: "50px 100px" }} onSubmit={productEdit}>
         <Form.Field>
           <label>UPC</label>
