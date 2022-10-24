@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Input } from "semantic-ui-react";
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { ProductDelete } from "./ProductDelete";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export function ProductList({ products }) {
   const setProductData = (
@@ -164,9 +164,8 @@ export function ProductList({ products }) {
         columns={columns}
         data={search(products)}
         pagination
-        fixedHeader
-        fixedHeaderScrollHeight="700px"
         subHeader
+        subHeaderAlign="center"
         subHeaderComponent={searchBar()}
       />
       <div style={{ textAlign: "center" }}>

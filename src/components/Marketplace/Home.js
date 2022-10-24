@@ -1,9 +1,10 @@
+import { Carousels } from "./Carousels";
 import api from "../api/InventoryAPI";
 import { useState, useEffect } from "react";
-import { ProductList } from "./ProductList";
+import { MainContent } from "./MainContent";
 
-export function Products() {
-  // Get all products
+
+export function Home() {
   const [products, setProducts] = useState([]);
 
   const getAllProducts = async () => {
@@ -17,7 +18,8 @@ export function Products() {
 
   return (
     <div>
-      <ProductList products={products}></ProductList>;
+      <Carousels />
+      <MainContent products={products} />
     </div>
   );
 }

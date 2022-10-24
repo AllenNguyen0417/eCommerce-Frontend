@@ -8,12 +8,12 @@ import { ProductCreate } from "./components/Inventory/ProductCreate";
 import { ProductEdit } from "./components/Inventory/ProductEdit";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 import "semantic-ui-css/semantic.min.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Navbar></Navbar>
-
     <Routes>
       <Route path="/" element={<App></App>}></Route>
       <Route path="/products" element={<Products></Products>}></Route>
@@ -23,6 +23,7 @@ root.render(
       ></Route>
       <Route path="/product/edit" element={<ProductEdit></ProductEdit>}></Route>
     </Routes>
+    <Footer></Footer>
   </BrowserRouter>
 );
 
